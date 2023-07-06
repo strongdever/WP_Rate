@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Mukta:wght@200;300;400;500;600;700;800&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap'); 
+
+@font-face {
+  font-family: 'Bahnschrift';
+  src: url('BAHNSCHRIFT.TTF');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-Bold.ttf');
+  src: local('Ubuntu'), local('Ubuntu-Bold'), url('Ubuntu-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-BoldItalic.ttf');
+  src: local('Ubuntu'), local('Ubuntu-BoldItalic'), url('Ubuntu-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-Medium.ttf');
+  src: local('Ubuntu'), local('Ubuntu-Medium'), url('Ubuntu-Medium.ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-MediumItalic.ttf');
+  src: local('Ubuntu'), local('Ubuntu-MediumItalic'), url('Ubuntu-MediumItalic.ttf');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-Regular.ttf');
+  src: local('Ubuntu'), local('Ubuntu-Regular'), url('Ubuntu-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-Italic.ttf');
+  src: local('Ubuntu'), local('Ubuntu-RegularItalic'), url('Ubuntu-Italic.ttf');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-Light.ttf');
+  src: local('Ubuntu'), local('Ubuntu-Light'), url('Ubuntu-Light.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('Ubuntu-LightItalic.ttf');
+  src: local('Ubuntu'), local('Ubuntu-LightItalic'), url('Ubuntu-LightItalic.ttf');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Oswald-Bold';
+  src: url('Oswald-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-SemiBold';
+  src: url('Oswald-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-Medium';
+  src: url('Oswald-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-Regular';
+  src: url('Oswald-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-Light';
+  src: url('Oswald-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald-ExtraLight';
+  src: url('Oswald-ExtraLight.ttf');
+}

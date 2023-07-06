@@ -1,0 +1,172 @@
+.bkncalculate #simulation,
+.bkncalculate #per_simulation,
+.per_simulation #per_calculation,
+#calculation {
+    padding: 20px 25px;
+    background: #f5f5f5;
+}
+
+.calculation,
+.per_calculation {
+    overflow: hidden;
+}
+.bkncalculate h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+    .bkncalculate h2 span {
+        color: #333;
+        font-size: 13px;
+        font-weight: normal;
+    }
+
+.bkncalculate .loantext {
+    float: left;
+    margin: 20px 0 0 0;
+}
+.bkncalculate .loantext p {
+    letter-spacing: 1px;
+}
+.bkncalculate .calculation dl {
+    margin: 0 14px 0 0;
+}
+.bkncalculate .calculation dl,
+.bkncalculate .per_calculation dl,
+.per_simulation #per_calculation dl {
+    float: left;
+    margin: 0 20px 0 0;
+}
+.bkncalculate .calculation .calc_last {
+    margin: 0;
+}
+.bkncalculate .calculation #answer,
+.bkncalculate .per_calculation #answer,
+.per_simulation #per_calculation #result {
+    padding: 5px;
+    margin-top: 18px;
+    margin-right: 0;
+    width: 380px;
+    float: right;
+}
+.bkncalculate .calculation dt,
+.bkncalculate .per_calculation dt,
+.per_simulation #per_calculation dt,
+#calculation dt {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.bkncalculate .calculation #answer dt,
+.bkncalculate .per_calculation #answer dt,
+.per_simulation #per_calculation #result dt,
+#calculation #answer dt {
+    color: #fff;
+    float: left;
+    background: none;
+    font-size: 120%;
+    margin: 11px 0 0 24px;
+}
+.bkncalculate .calculation #answer dd,
+.bkncalculate .per_calculation #answer dd,
+.per_simulation #per_calculation #result dd,
+#calculation #ansewr dd {
+    float: right;
+}
+.simulation__bt_mark {
+    height: 14px;
+    margin: 0 0 5px 2px;
+    cursor: pointer;
+    color: #555;
+    font-size: 20px;
+    line-height: 1;
+}
+.simulation__bt_mark:last-child {
+    margin-top: 2px;
+}
+.bkncalculate .calculation #answer input,
+.bkncalculate .per_calculation #answer input,
+.per_simulation #per_calculation #result input,
+#calculation #answer input {
+    color: #c00;
+    font-size: 150%;
+    width: 220px;
+    height: 40px;
+    background: #fff;
+}
+
+.bkncalculate .calculation input,
+.bkncalculate .per_calculation input,
+.per_simulation #per_calculation input,
+#calculation input {
+    float: left;
+    width: 164px;
+    height: 35px;
+    color: #333;
+    text-align: center;
+    font-size: 125%;
+    font-weight: bold;
+    line-height: 30px;
+    box-shadow: none;
+    border: solid 1px #ddd;
+}
+.bkncalculate .calculation .equal,
+.bkncalculate .per_calculation .equal,
+.per_simulation #per_calculation .equal {
+    margin: 30px 15px 0 0;
+}
+.per_simulation #per_calculation .equal {
+    float: left;
+    margin: 30px 0 0 50px;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-left: 15px solid #d33d7a;
+
+}
+.bkncalculate .calculation ul,
+.bkncalculate .per_calculation ul,
+.per_simulation #per_calculation ul,
+#calculation ul {
+    float: left;
+}
+.bkncalculate #simulation p,
+.bkncalculate #per_simulation p {
+    padding-top: 4px;
+}
+.bkncalculate #simulation p span {
+    color: #e20000;
+}
+
+.bkncalculate #per_simulation #result {
+    float: left;
+    background-color: #435690;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.bkncalculate #per_simulation #result dl {
+    padding-top: 0;
+    margin: 0;
+}
+
+.bkncalculate #per_simulation #result dt {
+    color: #fff;
+}
+
+.bkncalculate #per_simulation #result input {
+    color: #e20000;
+    font-size: 146%;
+}
+
+.bkncalculate table.fukidashi {
+    border: none;
+    margin: 0px;
+    width: auto;
+
+}
+
+.bkncalculate .fukidashi td {
+    border: none;
+    padding: 0px;
+}

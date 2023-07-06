@@ -1,0 +1,10 @@
+.bknDetailWrapper__facilities--name {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .bknDetailWrapper__facilities--name li {
+        margin: 0 8px 8px 0;
+        padding: 10px 12px;
+        background: #f5f5f5;
+    }

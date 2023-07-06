@@ -1,0 +1,48 @@
+/* 取り扱い会社 */
+.bknDetailWrapper__company {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+    /* 会社画像 */
+    .bkn-company__image {
+        width: 368px;
+        height: 258px;
+        margin-right: 20px;
+        display: flex;
+        justify-content: center;
+    }
+        .bkn-company__image img {
+            max-width: 100%;
+        }
+    /* 会社情報を囲う親要素 */
+    .bkn-company__detail {
+        width: 650px;
+    }
+    /* 項目名とバリューを囲う<dl> */
+    .bkn-company__information {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+    }
+    .bkn-company__information:first-child {
+        border-top: 1px solid #ddd;
+    }
+
+        /* 項目名 */
+        .company__information--item {
+            width: 80px;
+            padding: 0 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        /* 値 */
+        .company__information--value {
+            width: 530px;
+            padding: 0 10px;
+            font-size: 14px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+        }

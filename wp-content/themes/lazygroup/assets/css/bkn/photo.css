@@ -1,0 +1,75 @@
+/* 物件画像 */
+.bknImageWrapper {
+    width: 640px;
+}
+    /* 一番大きな画像 */
+    .bknImage__main {
+        width: 640px;
+        height: 440px;
+        margin-bottom: 10px;
+    }
+
+        .bknImage__item.slick-slide {
+            outline: none;
+        }
+            /* 画像を囲う要素 */
+            .bknImage__image {
+                width: 640px;
+                height: 440px;
+                position: relative;
+            }
+                /* 画像自体 */
+                .bknImage__image img {
+                    max-width: 640px;
+                    max-height: 440px;
+                    margin: auto;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+
+            /* 画像コメント（カテゴリ + 画像コメント） */
+            .bknImage__comment {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                font-weight: 500;
+                color: #fff;
+                background: rgba(0,0,0,.6);
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+
+        /* メイン画像下の画像群 */
+        .bknImage__thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .bknImage__thumbnailItem {
+            position: relative;
+            width: 85px;
+            height: 85px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+            /* サムネイルの画像カテゴリ */
+            .bknImage__thumbnailComment {
+                padding-left: 3px;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                display: inline-block;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                text-align: center;
+                background: #ddd;
+                color: black;
+                font-size: 12px;
+            }
+        .bknImage__thumbnailItem:not(:nth-child(7n+1)) {
+            margin-left: 7px;
+        }

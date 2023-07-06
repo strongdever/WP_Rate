@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/* outline
+------------------------------*/
+.l-footer * {
+    color: #fff;
+}
+.footer__wrap {
+    width: 1080px;
+    margin: 0 auto;
+    padding: 40px 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+/* footCompany
+------------------------------*/
+.footCompany__name {
+    font-size: 20px;
+    font-weight: bold;
+}
+.footCompany__address {
+    margin: 8px 0;
+}
+.oc-footer__copyright {
+    border: none;
+    display: flex;
+    align-items: flex-end;
+}

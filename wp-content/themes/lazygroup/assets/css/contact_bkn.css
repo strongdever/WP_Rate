@@ -1,0 +1,32 @@
+.contactBkn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactBkn__image {
+    width: 20%;
+}
+
+.contactBkn__image img {
+    width: 100%;
+}
+
+.contactBkn__information {
+    width: 60%;
+    margin-left: 10px;
+}
+.contactBkn__information th {
+    background: #565656;
+    color: #fff;
+}
+
+/* 価格 */
+.contactBkn__information--price {
+    font-weight: bold;
+    color: red;
+}
+.contactBkn__information td {
+    text-align: center;
+}

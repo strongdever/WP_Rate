@@ -1,0 +1,72 @@
+label {
+    display: inline-block;
+}
+
+label[for*="sex"],
+label[for*="howToReturn"] {
+    padding: 5px 10px;
+}
+
+label:not(:first-child) {
+    margin-left: 25px;
+}
+
+select {
+    width: 180px;
+    height: 45px;
+    border: 1px solid #bfbfbf;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #bfbfbf;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+select[name="birthdayYear"],
+select[name="birthdayMonth"],
+select[name="birthdayDay"] {
+    width: 100px;
+    margin-right: 20px;
+}
+
+#zipCode {
+    width: 180px;
+    margin: 0 0 10px 71px;
+}
+
+#addressCode1 {
+    margin: 0 0 10px 71px;
+}
+
+#addressStr2 {
+    width: 285px;
+    margin: 0 0 10px 71px;
+}
+
+#addressStr3 {
+    width: 285px;
+    margin: 0 0 10px 103px;
+}
+
+#addressStr4 {
+    width: 285px;
+    margin: 0 0 0 10px;
+}
+
+input[name="annualIncome"] {
+    width: 180px;
+    margin-right: 10px;
+}
+
+.contactForm__inputs span.required {
+    margin-left: 10px;
+    font-size: 14px;
+}

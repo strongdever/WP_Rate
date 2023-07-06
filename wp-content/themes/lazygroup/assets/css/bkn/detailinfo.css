@@ -1,0 +1,30 @@
+.bknDetailWrapper__detailInfo--title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+}
+    .readinfo {
+        margin-left: 10px;
+        padding: 3px 8px;
+        border: solid 1px #bbb;
+        border-radius: 3px;
+    }
+.bknDetailWrapper__detailInfo--data table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+    .bknDetailWrapper__detailInfo--data th {
+        width: 180px;
+        padding: 10px;
+        font-weight: normal;
+        border: 1px solid #bbb;
+        background: #f5f5f5;
+    }
+    .bknDetailWrapper__detailInfo--data td {
+        width: 330px;
+        padding: 10px;
+        border: 1px solid #bbb;
+        word-break: break-word;
+    }

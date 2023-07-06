@@ -1,0 +1,76 @@
+
+.bknContTtl_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+    .bknCont__noteTtl {
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+/*****************************************************
+                パノラマ
+******************************************************/
+#panoramaspace {
+    position: relative;
+}
+#thumbnail {
+    display: table;
+    table-layout: fixed;
+    margin: 0;
+}
+#thumbnail li {
+    cursor: pointer;
+    text-align: center;
+    display: table-cell;
+    float: left;
+    padding: 5px;
+    margin: 7px 2px 0 0;
+}
+#thumbnail li :hover {
+    opacity: 0.7;
+}
+#thumbnail img {
+    padding: 0 0 5px 0;
+}
+#thumb5 {
+    margin: 7px 0 0 0 !important;
+}
+_::content, _:future, .thumb:not(*:root) {
+    width: 174px;
+}
+.thumbcolor {
+    color: #fff;
+}
+.panoramaphoto {
+    height: auto;
+    display: none;
+}
+#panoramapoint {
+    margin: 10px 0 3px;
+    text-align: center;
+}
+#panoramapoint .panoramacomment {
+    display: none;
+}
+
+/*****************************************************
+                VR
+******************************************************/
+    #vr_iframe {
+        height: 630px;
+        width: 100%;
+        padding-bottom: 12px;
+    }
+    .bknDetailWrapper__vrContents .readinfo {
+        margin: 0;
+        float: right;
+    }
+
+
+/*****************************************************
+                物件動画
+******************************************************/
+    .bknDetailWrapper__movie iframe {
+        border: none;
+    }

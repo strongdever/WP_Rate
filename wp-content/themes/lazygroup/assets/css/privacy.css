@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+#rule {
+    border: 1px solid #bbb;
+    padding: 21px 19px 0 19px;
+    margin: 0 0 10px;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 2px #eee;
+}
+.contents__headline {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.rule-section {
+    margin: 0 0 30px;
+}
+
+.rule-section h2 {
+    border-bottom: 1px dotted #777;
+    font-weight: bold;
+    padding: 0 0 2px;
+    margin: 0 0 2px;
+}
+
+.rule-section ol {
+    margin: 0 0 0 44px;
+}
+
+.rule-section li {
+    text-indent: -2em;
+}
+
+.rule-section li p {
+    margin: 0 0 0 27px;
+}
+
+.rule-section li li {
+    text-indent: -1.3em;
+}
+
+.rule-inner {
+    margin: 20px 0 0 0;
+}
+
+.rule dl.outer,
+.rule p.outer {
+    margin: 0 0 20px 20px;
+}
+
+.rule dl.outer dt {
+    font-weight: bold;
+}

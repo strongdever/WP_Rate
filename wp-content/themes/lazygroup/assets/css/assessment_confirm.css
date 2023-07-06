@@ -1,0 +1,21 @@
+.titleWrapper {
+    display: flex;
+}
+
+.contactForm__contTtl.bknInformation,
+.contactForm__contTtl.customer_information {
+    width: 630px;
+}
+
+/* 確認画面の住所系 */
+.contactForm__inputs.confirmAddress div {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+}
+
+/* 修正する */
+.return__bt {
+    width: 100px;
+    margin-top: 20px;
+}

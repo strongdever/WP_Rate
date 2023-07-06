@@ -1,0 +1,52 @@
+/* 各コンテンツの共通クラス */
+.section_wrap {
+    margin-bottom: 60px;
+}
+
+/* お問い合わせ */
+.conversion_topBottomMargin {
+    margin: 60px 0;
+}
+.otherContact__item--satei {
+    width: 340px;
+}
+
+/* 価格は赤字 */
+.basicInfo__price {
+    color: #e10000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* マップアイコン */
+.bknDetail__mapIcon {
+    margin-left: 10px;
+
+}
+/* 基本情報内のローンシミュレーションボタン */
+.basicInfo__wrapper a.simulation__button,
+/* 物件概要内ローンシミュレーションボタン */
+.bknDetailWrapper__detailInfo a.simulation__button {
+    padding: 3px;
+    border: 1px solid blue;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 13px;
+    margin-left: 10px;
+}
+.basicInfo__wrapper a.simulation__button:hover,
+.bknDetailWrapper__detailInfo a.simulation__button:hover {
+    text-decoration: none;
+    color: blue;
+    opacity: 0.7;
+}
+
+/* 電卓アイコン */
+i.fa-calculator {
+    margin-right: 5px;
+}
+
+/* 物件概要内のマップアイコン */
+a.bknDetail__mapIcon:hover {
+    text-decoration: none;
+}

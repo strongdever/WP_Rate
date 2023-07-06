@@ -1,0 +1,49 @@
+.bknDetail_top {
+    display: flex;
+    justify-content: space-between;
+}
+/* 物件紹介 */
+.basicInfo {
+    width: 450px;
+}
+    .basicInfo__wrapper dl {
+        margin-bottom: 15px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+    }
+        /* 物件種目と建物構造 */
+        .basicInfo__type {
+            display: inline-block;
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+        }
+        /* 価格変更ラベル */
+        .basicInfo__changePriceLabel {
+            padding: 5px;
+            display: inline-block;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            color: red;
+        }
+        /* 項目名はグレー背景色に白字 */
+        .basicInfo__wrapper dt {
+            width: 155px;
+            margin-right: 10px;
+            font-weight: bold;
+            text-align: right;
+        }
+        .basicInfo__wrapper dd {
+            display: flex;
+            align-items: center;
+            width: 355px;
+        }
+
+            .basicInfo__contact {
+                margin-top: 50px;
+            }
+
+
+
+

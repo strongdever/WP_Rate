@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+.topics {
+    width: 1080px;
+    margin: 30px 0;
+}
+    .topics__table {
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+        .topics__item:not(:first-child) {
+            border-top: 1px solid #ddd;
+        }
+            .topics__date {
+                width: 100px;
+                padding: 20px 10px;
+                font-size: 14px;
+                background: #f5f5f5;
+                vertical-align: top;
+            }
+            .topics__cont {
+                width: 918px;
+                padding: 20px;
+            }
+                .topics__cont img {
+                    max-width: 100%;
+                }

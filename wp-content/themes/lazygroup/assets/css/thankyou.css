@@ -1,0 +1,99 @@
+#contents {
+    margin: 30px auto;
+}
+
+.input-contact {
+    position: relative;
+}
+
+.contactStatus {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: -87px;
+    right: 0;
+}
+
+[class*="contactStatus__item"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    background: #eee;
+    display: flex;
+    position: relative;
+}
+
+[class*="contactStatus__item"]:not(:last-child) {
+    margin-right: 20px;
+}
+
+[class*="contactStatus__item"]:not(:last-child)::after {
+    content: "";
+    width: 0;
+    height: 0;
+    margin: auto;
+    border-style: solid;
+    border-width: 5px 0 5px 7px;
+    border-color: transparent transparent transparent #000;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -15px;
+    bottom: 0;
+}
+
+[class*="contactStatus__item"].is-active {
+    color: #fff;
+}
+
+.contactForm__wrap {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.sendtext {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.contactText__detail {
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.notes {
+    width: 758px;
+    margin: 50px auto 0;
+    padding: 20px;
+    font-size: 12px;
+    color: #000;
+    border: 1px solid #ddd;
+}
+
+.contactForm__bt {
+    width: 300px;
+    height: 60px;
+    margin: 0 auto;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactForm__link {
+    width: 300px;
+    height: 60px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactForm__link:hover {
+    color: #fff;
+}

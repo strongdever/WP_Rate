@@ -13,7 +13,8 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link rel="stylesheet" href="<?php echo T_DIRE_URI; ?>/assets/css/footer.css">
-   <meta name='robots' content='noindex, nofollow' />
+
+   <?php wp_head(); ?>
 
    <script type="text/javascript">
       (function (w, d, s, l, i) {
@@ -31,6 +32,21 @@
       })(window, document, 'script', 'dataLayer', 'GTM-P23JBD7');
    </script>
    </head>
+
+   <?php 
+    global $post;
+    
+    if( $post->post_type != "page" ) {
+        $post_slug = $post->post_type;
+    } else {
+        $post_slug = $post->post_name;
+    }
+    if( is_single() ) {
+        $category_arr = get_the_category( $post->ID );
+        $post_slug = $category_arr[0]->slug;
+    } 
+  ?>
+
    <body id="esbody">
       <div id="container">
          <meta http-equiv="content-script-Type" content="text/javascript">

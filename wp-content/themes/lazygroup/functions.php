@@ -252,11 +252,46 @@ function theme_add_files() {
 
 add_action('wp_enqueue_scripts', 'theme_add_files');
 
+/**
+ * Use radio inputs instead of checkboxes for term checklists in specified taxonomies.
+ *
+ * @param   array   $args
+ * @return  array
+ */
+function custom_term_radio_checklist( $args ) {
+    if ( ! empty( $args['taxonomy'] ) && $args['taxonomy'] === 'product' || $args['taxonomy'] === 'category' ) {
+        if ( empty( $args['walker'] ) || is_a( $args['walker'], 'Walker' ) ) { 
+            if ( ! class_exists( 'WPSE_139269_Walker_Category_Radio_Checklist' ) ) {
+                class WPSE_139269_Walker_Category_Radio_Checklist extends Walker_Category_Checklist {
+                    function walk( $elements, $max_depth, ...$args ) {
+                        $output = parent::walk( $elements, $max_depth, ...$args );
+                        $output = str_replace(
+                            array( 'type="checkbox"', "type='checkbox'" ),
+                            array( 'type="radio"', "type='radio'" ),
+                            $output
+                        );
+
+                        return $output;
+                    }
+                }
+            }
+
+            $args['walker'] = new WPSE_139269_Walker_Category_Radio_Checklist;
+        }
+    }
+
+    return $args;
+}
+
+add_filter( 'wp_terms_checklist_args', 'custom_term_radio_checklist' );
+
 function theme_custom_setup() {
     add_theme_support( 'post-thumbnails' ); 
-    add_image_size( "thumbnail", 150, 100, true );
-    add_image_size( "medium", 480, 320, true );
-    set_post_thumbnail_size( 480, 320, true );
+    add_image_size( "blog-thumbnail", 255, 200, true );
+    add_image_size( "blog-medium", 332, 230, true );
+    add_image_size( "bknlist-thumbnail", 288, 216, true );
+    add_image_size( "news-thumbnail", 100, 75, true );
+    set_post_thumbnail_size( 255, 200, true );
     add_editor_style('https://use.fontawesome.com/releases/v5.15.1/css/all.css');
     add_editor_style('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap');
     add_editor_style('assets/css/all.css');
@@ -267,19 +302,129 @@ function theme_custom_setup() {
     add_editor_style('assets/css/firstPage.css');
     add_editor_style('assets/css/top.css');
 
-        add_editor_style('assets/css/fancybox.css');
-        add_editor_style('assets/css/company.css');
+    add_editor_style('assets/css/fancybox.css');
+    add_editor_style('assets/css/company.css');
 
     add_theme_support( 'automatic-feed-links' );
 }
 
 add_action( 'after_setup_theme', 'theme_custom_setup' );
 
-add_shortcode('url', function ( $atts ) {
-    if(isset($atts['arg'])) {
-        return site_url($atts['arg']);
+function catch_that_image() {
+    global $post, $posts;
+    $first_img = '';
+    ob_start();
+    ob_end_clean();
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+    $first_img = $matches [1] [0];
+
+    if(empty($first_img)){ //Defines a default image
+        $first_img = "/assets/img/common/no_image.jpg";
     }
-    return get_theme_file_uri();
-} );
+    return $first_img;
+}
+
+function custom_pagination($total_pages, $current_page = 1, $total_counts = 0) {
+    global $wp_query;
+
+    $big = 99999999; // set a big number for the links
+
+    $paginate_links = paginate_links(array(
+        'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+        'format' => '?paged=%#%',
+        'current' => max(1, $current_page),
+        'total' => $total_pages,
+        'type' => 'array',
+        'prev_text' => __('&lt; 前へ'),
+        'next_text' => __('次へ &gt;'),
+        'show_all' => true,
+        'end_size' => 3,
+        'mid_size' => 3
+    ));
+
+    $first_number = $total_counts == 0 ? 0 : ($current_page - 1) * 20 + 1;
+    $secode_number = ($current_page * 20) > $total_counts ? $total_counts : ($current_page * 20);
+?>
+    
+    <div class="pager">
+        <p class="pager__num"<?php echo $paginate_links ? '' : ' style="margin-right: 0;"'; ?>>該当公開件数<span class="pager__num--point ui-tx-point"><?php echo $total_counts; ?>件</span>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $first_number; ?>～<?php echo $secode_number; ?>件表示</p>
+        <?php if ($paginate_links) : ?>
+            <ul class="pager__wrap">
+                <?php foreach ($paginate_links as $link) : ?>
+                    <li class="pager__bt"><?php echo $link; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+<?php
+}
+
+add_filter( 'previous_post_link', 'filter_single_post_pagination', 10, 4 );
+add_filter( 'next_post_link',     'filter_single_post_pagination', 10, 4 );
+
+function filter_single_post_pagination( $output, $format, $link, $post )
+{
+    if( $post ) {
+        $title = get_the_title( $post );
+        $url   = get_permalink( $post->ID );
+        ob_start();
+        if ( 'next_post_link' === current_filter() ) :
+        ?>
+        <p class="blogPager__item--next">
+            <a href="<?php echo $url; ?>" class="hoverDefault">
+                <span class="blogPager__ttl"><?php echo $title; ?></span>
+                <i class="fas fa-chevron-right blogPager__arw"></i>
+            </a>
+        </p>
+        <?php else : ?>
+            <p class="blogPager__item--prev">
+                <a href="<?php echo $url; ?>" class="hoverDefault">
+                    <i class="fas fa-chevron-left blogPager__arw"></i>
+                    <span class="blogPager__ttl"><?php echo $title; ?></span>
+                </a>
+            </p>
+        <?php endif; ?>
+        <?php
+
+        $output = ob_get_contents();
+        ob_end_clean();
+        return $output;
+    }
+    return false;
+}
+
+// // Set the excerpt from the post content
+// function set_custom_excerpt($excerpt) {
+//     if (has_excerpt()) {
+//         return $excerpt;
+//     }
+//     $content = get_the_content();
+//     $excerpt_length = apply_filters('excerpt_length', 55); // Set the desired excerpt length
+//     $excerpt_more = apply_filters('excerpt_more', ' ' . '[...]'); // Set the desired excerpt more indicator
+//     $excerpt = wp_trim_words($content, $excerpt_length, $excerpt_more);
+//     return $excerpt;
+// }
+// add_filter('the_excerpt', 'set_custom_excerpt');
+
+// function disable_wp_auto_p( $content ) {
+//     if ( is_singular( 'page' ) ) {
+//       remove_filter( 'the_content', 'wpautop' );
+//     }
+//     remove_filter( 'the_excerpt', 'wpautop' );
+//     return $content;
+// }
+
+// add_filter( 'the_content', 'disable_wp_auto_p', 0 );
+
+function new_excerpt_length($length) {
+    return 30;
+}
+add_filter('excerpt_length', 'new_excerpt_length');
+
+function new_excerpt_more($more) {
+    return '...';
+}
+
+add_filter('excerpt_more', 'new_excerpt_more');
 
 ?>

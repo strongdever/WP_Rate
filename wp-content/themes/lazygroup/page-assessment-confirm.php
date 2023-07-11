@@ -4,7 +4,7 @@ Template Name: Assessment Confirm Template
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-get_header();
+get_header('contact');
 
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 
@@ -47,4 +47,4 @@ $paged = get_query_var('paged') ? get_query_var('paged') : 1;
     
 </main>
 
-<?php get_footer();?>
+<?php get_footer('contact');?>

@@ -1,0 +1,213 @@
+@charset "utf-8";
+
+/**
+ * 投稿ステータス等
+ */
+#minor-publishing-actions,
+#misc-publishing-actions {
+	display: none;
+}
+
+/**
+ * 更新時の記事リンク
+ */
+.post-php #message a {
+	display: none;
+}
+
+/**
+ * 抜粋表示の続きを読む
+ */
+.wp-list-table .post-title span.more-link {
+	display: none;
+}
+
+/**
+ * #titlediv
+ */
+#titlediv {
+	margin-bottom: 3px;
+}
+
+/**
+ * .add-mwform-btn
+ */
+.add-mwform-btn {
+	position: relative;
+	/* bottom: -15px; */
+	z-index: 1001;
+}
+
+/**
+ * .wp-editor-tabs
+ */
+.wp-editor-tabs {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+/**
+ * #mw-wp-form_addon
+ */
+#mw-wp-form_addon .button {
+	margin-top: 5px;
+}
+
+/**
+ * フォーム識別子
+ */
+span#formkey_field {
+	background-color: #fff;
+	border: #dfdfdf solid 1px;
+	border-radius: 3px;
+	color: #333;
+	display: block;
+	margin: 1px;
+	padding: 3px;
+}
+
+/**
+ * URL設定
+ */
+#mw-wp-form_url table {
+	font-size: 100%;
+	width: 100%;
+}
+#mw-wp-form_url table th {
+	padding-right: 10px;
+	text-align: left;
+	width: 33%;
+}
+#mw-wp-form_url table td input {
+	width: 100%;
+}
+
+/**
+ * メール設定
+ */
+#mw-wp-form_mail textarea,
+#mw-wp-form_admin_mail textarea {
+	width: 100%;
+}
+
+/**
+ * 設定
+ */
+#mw-wp-form_settings .section {
+	border-bottom: #dfdfdf solid 1px;
+	margin: 0 0 15px;
+	padding: 0 0 15px;
+}
+#mw-wp-form_settings .section:last-child {
+	margin-bottom: 0;
+	border-bottom: none;
+	padding-bottom: 0;
+}
+#mw-wp-form_settings table {
+	margin: 0;
+	font-size: 100%;
+}
+#mw-wp-form_settings table td {
+	padding: 0 5px 0 0;
+	text-align: left;
+	vertical-align: middle;
+}
+#mw-wp-form_settings table td input {
+	width: 100%;
+}
+#mw-wp-form_settings table.akismet th {
+	font-weight: normal;
+	padding: 0 0 5px;
+	text-align: left;
+}
+
+/**
+ * 注釈
+ */
+.mwf_note {
+	color: #666;
+	font-size: 93%;
+}
+
+/**
+ * 注釈
+ */
+.mwf_require {
+	color: #b70000;
+	margin-left: 3px;
+}
+
+/**
+ * .mwform-dialog
+ */
+.post-type-mw-wp-form .ui-dialog {
+	z-index: 1002 !important;
+}
+.mwform-dialog {
+	display: none;
+	font-size: 12px;
+}
+.mwform-dialog .form p {
+	margin: 0 0 10px;
+	padding: 0;
+}
+.mwform-dialog .form p strong {
+	display: block;
+	font-weight: bold;
+	margin: 0 0 5px;
+}
+.mwform-dialog input[type="text"],
+.mwform-dialog textarea {
+	width: 100%;
+}
+
+.mwform-dialog table {
+	margin: 0;
+	width: 100%;
+}
+.mwform-dialog table th,
+.mwform-dialog table td {
+	font-weight: normal;
+	text-align: left;
+	vertical-align: top;
+	padding: 3px 8px;
+}
+.mwform-dialog table th {
+	width: 30%;
+}
+.mwform-dialog input[type="text"],
+.mwform-dialog textarea {
+	width: 100%;
+}
+.mwform-dialog textarea {
+	height: 70px;
+}
+.mwform-dialog .mwf_note {
+	display: block;
+}
+
+/**
+ * .mwform-chart-wrapper
+ */
+.mwform-chart-wrapper {
+	overflow: hidden;
+	*zoom: 1;
+}
+.mwform-chart-wrapper .mwform-chart {
+	float: left;
+	margin-right: 30px;
+}
+.mwform-chart-wrapper .mwform-legend {
+	overflow: hidden;
+}
+.mwform-chart-wrapper .mwform-legend .mwform-legend-color {
+	display: inline-block;
+	height: 8px;
+	width: 8px;
+	overflow: hidden;
+	margin-right: 5px;
+}
+.mwform-chart-wrapper .mwform-legend .mwform-legend-value {
+	margin-left: 10px;
+}

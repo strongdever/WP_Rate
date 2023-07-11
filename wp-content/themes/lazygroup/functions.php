@@ -84,6 +84,7 @@ function remove_default_post_type() {
 
 add_action('admin_menu', 'remove_default_post_type'); 
 
+
 // CSS・スクリプトの読み込み
 function theme_add_files() {
     global $post;
@@ -93,7 +94,7 @@ function theme_add_files() {
     wp_enqueue_style('c-common', T_DIRE_URI.'/assets/css/common/common.css', [], '1.0', 'all');
 
     wp_enqueue_style('c-header', T_DIRE_URI.'/assets/css/header.css', [], '1.0', 'all');
-    wp_enqueue_style('c-footer', T_DIRE_URI.'/assets/css/footer.css', [], '1.0', 'all');
+    // wp_enqueue_style('c-footer', T_DIRE_URI.'/assets/css/footer.css', [], '1.0', 'all');
     wp_enqueue_style('c-jquery-jscrollpane', T_DIRE_URI.'/assets/css/jquery.jscrollpane.css', [], '1.0', 'all');
 
     wp_enqueue_style('c-slick', T_DIRE_URI.'/assets/css/slick.css', [], '1.0', 'all');
@@ -252,12 +253,6 @@ function theme_add_files() {
 
 add_action('wp_enqueue_scripts', 'theme_add_files');
 
-/**
- * Use radio inputs instead of checkboxes for term checklists in specified taxonomies.
- *
- * @param   array   $args
- * @return  array
- */
 function custom_term_radio_checklist( $args ) {
     if ( ! empty( $args['taxonomy'] ) && $args['taxonomy'] === 'product' || $args['taxonomy'] === 'category' ) {
         if ( empty( $args['walker'] ) || is_a( $args['walker'], 'Walker' ) ) { 
@@ -292,37 +287,95 @@ function theme_custom_setup() {
     add_image_size( "bknlist-thumbnail", 288, 216, true );
     add_image_size( "news-thumbnail", 100, 75, true );
     set_post_thumbnail_size( 255, 200, true );
-    add_editor_style('https://use.fontawesome.com/releases/v5.15.1/css/all.css');
-    add_editor_style('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap');
-    add_editor_style('assets/css/all.css');
-    add_editor_style('assets/css/common.css');
-    add_editor_style('assets/css/slick.css');
-    add_editor_style('assets/css/jquery.jscrollpane.css');
-    add_editor_style('assets/css/jquery.mCustomScrollbar.css');
-    add_editor_style('assets/css/firstPage.css');
-    add_editor_style('assets/css/top.css');
-
-    add_editor_style('assets/css/fancybox.css');
-    add_editor_style('assets/css/company.css');
-
     add_theme_support( 'automatic-feed-links' );
 }
 
 add_action( 'after_setup_theme', 'theme_custom_setup' );
+
+function replaceImagePath( $arg ) {
+    $content = str_replace('"images/', '"' . T_DIRE_URI . '/assets/img/', $arg);
+    $content = str_replace('"/images/', '"' . T_DIRE_URI . '/assets/img/', $content);
+    $content = str_replace(', images/', ', ' . T_DIRE_URI . '/assets/img/', $content);
+    $content = str_replace("('images/", "('". T_DIRE_URI . '/assets/img/', $content);
+    return $content;
+}
+
+add_action('the_content', 'replaceImagePath');
+
+function disable_wp_auto_p( $content ) {
+    if ( is_singular( 'page' ) ) {
+      remove_filter( 'the_content', 'wpautop' );
+    }
+    remove_filter( 'the_excerpt', 'wpautop' );
+    return $content;
+}
+
+add_filter( 'the_content', 'disable_wp_auto_p', 0 );
+
+add_filter('wpcf7_autop_or_not', '__return_false');
+
+add_filter('query_vars', function($vars) {
+	$vars[] = 'news_category';
+	return $vars;
+});
+
+add_filter( 'wpcf7_validate_email*', 'custom_email_confirmation_validation_filter', 20, 2 );
+  
+function custom_email_confirmation_validation_filter( $result, $tag ) {
+  if ( 'your-email-confirm' == $tag->name ) {
+    $your_email = isset( $_POST['your-email'] ) ? trim( $_POST['your-email'] ) : '';
+    $your_email_confirm = isset( $_POST['your-email-confirm'] ) ? trim( $_POST['your-email-confirm'] ) : '';
+  
+    if ( $your_email != $your_email_confirm ) {
+      $result->invalidate( $tag, "これが正しいメールアドレスですか？" );
+    }
+  }
+  
+  return $result;
+}
 
 function catch_that_image() {
     global $post, $posts;
     $first_img = '';
     ob_start();
     ob_end_clean();
-    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-    $first_img = $matches [1] [0];
-
-    if(empty($first_img)){ //Defines a default image
-        $first_img = "/assets/img/common/no_image.jpg";
+    $output = preg_match_all('/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', $post->post_content, $matches);
+    $first_img = $matches[1][0];
+  
+    if(empty($first_img)) {
+      $first_img = T_DIRE_URI . "/assets/img/common/no_image.jpg";
     }
     return $first_img;
+  }
+
+//add SVG to allowed file uploads
+function add_file_types_to_uploads($file_types){
+
+    $new_filetypes = array();
+    $new_filetypes['svg'] = 'image/svg+xml';
+    $file_types = array_merge($file_types, $new_filetypes );
+
+    return $file_types;
 }
+add_action('upload_mimes', 'add_file_types_to_uploads');
+
+function taxonomy_checklist_checked_ontop_filter ($args) {
+    $args['checked_ontop'] = false;
+    return $args;
+}
+
+add_filter('wp_terms_checklist_args','taxonomy_checklist_checked_ontop_filter');
+
+function new_excerpt_length($length) {
+    return 30;
+}
+add_filter('excerpt_length', 'new_excerpt_length');
+
+function new_excerpt_more($more) {
+    return '...';
+}
+
+add_filter('excerpt_more', 'new_excerpt_more');
 
 function custom_pagination($total_pages, $current_page = 1, $total_counts = 0) {
     global $wp_query;
@@ -359,6 +412,28 @@ function custom_pagination($total_pages, $current_page = 1, $total_counts = 0) {
 <?php
 }
 
+function wp_set_post_views( $postID ) {
+    $count_key = 'wpb_post_views_count';
+    $count = get_post_meta( $postID, $count_key, true );
+
+    if( $count == '' ) {
+        $count = 0;
+        delete_post_meta( $postID, $count_key );
+        add_post_meta( $postID, $count_key, '0' );
+    } else {
+        $count++;
+        update_post_meta( $postID, $count_key, $count );
+    }
+}
+
+function wp_get_post_views( $content ) {
+    if ( is_single() ) {
+        wp_set_post_views(get_the_ID());
+    }
+    return $content;
+}
+add_filter( 'the_content', 'wp_get_post_views' );
+
 add_filter( 'previous_post_link', 'filter_single_post_pagination', 10, 4 );
 add_filter( 'next_post_link',     'filter_single_post_pagination', 10, 4 );
 
@@ -393,38 +468,111 @@ function filter_single_post_pagination( $output, $format, $link, $post )
     return false;
 }
 
-// // Set the excerpt from the post content
-// function set_custom_excerpt($excerpt) {
-//     if (has_excerpt()) {
-//         return $excerpt;
-//     }
-//     $content = get_the_content();
-//     $excerpt_length = apply_filters('excerpt_length', 55); // Set the desired excerpt length
-//     $excerpt_more = apply_filters('excerpt_more', ' ' . '[...]'); // Set the desired excerpt more indicator
-//     $excerpt = wp_trim_words($content, $excerpt_length, $excerpt_more);
-//     return $excerpt;
-// }
-// add_filter('the_excerpt', 'set_custom_excerpt');
+function bkn_table_data( $attr ) {
 
-// function disable_wp_auto_p( $content ) {
-//     if ( is_singular( 'page' ) ) {
-//       remove_filter( 'the_content', 'wpautop' );
-//     }
-//     remove_filter( 'the_excerpt', 'wpautop' );
-//     return $content;
-// }
+    $args = shortcode_atts( array(
+        'id' => 1,
+    ), $attr );
+    
+    ob_start();
+    $bkn_id = $args['id'];
 
-// add_filter( 'the_content', 'disable_wp_auto_p', 0 );
-
-function new_excerpt_length($length) {
-    return 30;
+    $custom_args = array(
+        'post_type' => 'bknlist',
+        'post_status' => 'publish',
+        'post__in' => [$bkn_id],
+    );
+    $custom_query = new WP_Query( $custom_args );
+    if( $custom_query->have_posts() ) :
+        while ( $custom_query->have_posts() ) : $custom_query->the_post();
+    ?>
+        <div class="contactBkn">
+            <p class="contactBkn__image">
+                <?php if( has_post_thumbnail() ): ?>
+                    <?php the_post_thumbnail("bknlist-thumbnail"); ?>
+                <?php else: ?>
+                    <img src="<?php echo catch_that_image(); ?>" alt="<?php the_title(); ?>">
+                <?php endif; 
+                get_post_thumb
+                ?>
+            </p>
+            <table class="contactBkn__information">
+                <tbody>
+                    <tr>
+                        <th>価格</th>
+                        <th>間取り</th>
+                        <th>建物面積</th>
+                        <th>土地面積</th>
+                    </tr>
+                    <tr>
+                        <td class="contactBkn__information--price">
+                        <span class="basicInfo__price"><?php echo number_format( get_field('property_price') ); ?>万円</span> </td>
+                        <td><?php echo get_field('property_floorplan') ? get_field('property_floorplan') : '-'; ?></td>
+                        <td><?php echo get_field('property_buildingarea') ? get_field('property_buildingarea') : '-'; ?></td>
+                        <td><?php echo get_field('property_landarea') ? get_field('property_landarea') : '-'; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <?php
+        endwhile;
+        wp_reset_postdata();
+    endif;
+    $output = ob_get_contents();
+    ob_end_clean();
+    return $output;
 }
-add_filter('excerpt_length', 'new_excerpt_length');
 
-function new_excerpt_more($more) {
-    return '...';
+add_shortcode('bkn-simple-data', 'bkn_table_data');
+
+function custom_post_news( $attr ) {
+
+    $args = shortcode_atts( array(
+        'count' => 5,
+
+    ), $attr );
+    
+    ob_start();
+
+    $news_args = [
+        'post_type' => 'news',
+        'post_status' => 'publish',
+        'posts_per_page' => $args['count'],
+    ];
+
+    $news_query = new WP_Query( $news_args );
+
+    ?>
+    <?php if( $news_query->have_posts() ) : ?>
+        <div class="p_news_list_container content_in">
+            <div class="p_news_list">
+                <?php while( $news_query->have_posts() ) : $news_query->the_post(); ?>
+                    <div class="p_news_item" data-aos="fade-up" data-aos-delay="150">
+                        <p class="news_date"><?php the_time("Y.m.d"); ?></p>
+                        <h4 class="news_title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                    </div>
+                <?php endwhile; ?>
+                <?php wp_reset_postdata(); ?>
+            </div>
+            <div class="p_link_btn_wrap" data-aos="fade-up" data-aos-delay="300">
+                <a href="<?php echo HOME . 'news'; ?>" class="link_btn ml_auto">
+                    <span>すベての記事を見る</span>
+                    <picture class="icon_arrow">
+                        <source media="(min-width:769px)" srcset="<?php echo T_DIRE_URI; ?>/assets/img/common/arrow-right-pc.png">
+                        <source media="(max-width:768px)" srcset="<?php echo T_DIRE_URI; ?>/assets/img/common/arrow-right-sp.png">
+                        <img src="<?php echo T_DIRE_URI; ?>/assets/img/common/arrow-right-pc.png" alt="">
+                    </picture>
+                </a>
+            </div>
+        </div>
+    <?php endif; ?>
+    
+    <?php
+    $output = ob_get_contents();
+    ob_end_clean();
+    return $output;
 }
 
-add_filter('excerpt_more', 'new_excerpt_more');
+add_shortcode('post-news', 'custom_post_news');
 
 ?>

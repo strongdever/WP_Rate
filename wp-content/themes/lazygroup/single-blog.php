@@ -36,7 +36,7 @@ $current_post_ID = get_the_ID();
 								$last_blog_cat = $blog_cats[0];
 						?>
 						<p class="headCategory__item ui-bg-sub">
-                <a href="<?php echo get_term_link( $last_blog_cat->term_id ); ?>" class=""><?php echo $last_blog_cat->name; ?></a>
+                <a href="<?php echo get_term_link( $last_blog_cat->term_id, 'blog-category' ); ?>" class=""><?php echo $last_blog_cat->name; ?></a>
             </p>
 						<?php endif; ?>
             

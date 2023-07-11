@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+/**
+ * error message
+ */
+.mw_wp_form .error {
+	font-size : 93%;
+	color : #B70000;
+	display : block;
+}
+
+/**
+ * error message of akismet
+ */
+.mw_wp_form .akismet_error {
+	display: block;
+}
+
+/**
+ * vertical style of radio and checkbox
+ */
+.mw_wp_form .vertical-item {
+	display: block;
+}
+.mw_wp_form .vertical-item + .vertical-item {
+	margin-top: 5px;
+}
+
+/**
+ * horizontal style of radio and checkbox
+ */
+.mw_wp_form .horizontal-item + .horizontal-item {
+	margin-left: 10px;
+}
+
+/**
+ * radio and checkbox
+ */
+.mwform-checkbox-field label,
+.mwform-radio-field label {
+	font-weight: normal;
+	margin-bottom: 0;
+}
+.mwform-checkbox-field input,
+.mwform-radio-field input {
+	margin-right: 5px;
+}
+
+/**
+ * datepicker
+ */
+.mw_wp_form .ui-datepicker .ui-datepicker-title select.ui-datepicker-month,
+.mw_wp_form .ui-datepicker .ui-datepicker-title select.ui-datepicker-year {
+	width: 40%;
+	margin: 0 5px;
+}
+
+/**
+ * deprecated message
+ */
+.mw-wp-form-deprecated-message {
+	background: #fdeeee;
+	border: 1px solid #f7bdb8;
+	border-radius: 5px;
+	color: #af4040;
+	font-size: 13px;
+	line-height: 1.6;
+	margin: 0 0 10px;
+	padding: 1em;
+}
+
+/**
+ * file
+ */
+.mw_wp_form input[type="file"] {
+	display: inline-block;
+}
+
+/**
+ * file delete button
+ */
+.mwform-file-delete {
+	cursor: pointer;
+	visibility: hidden;
+}
+
+/**
+ * tel and zip
+ */
+.mwform-tel-field input[type="text"],
+.mwform-zip-field input[type="text"] {
+	display: inline-block;
+	width: auto;
+}
